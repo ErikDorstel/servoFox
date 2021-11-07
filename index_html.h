@@ -27,7 +27,7 @@ function SERVOinit() {
 
 function doDisplay() {
   document.getElementById("freqBtn").innerHTML="Frequency "+servoFreq+" Hz ["+Math.round(1000/servoFreq*100)/100+" ms]";
-  document.getElementById("valueBtn").innerHTML="Value "+servoValue+" / 4096";
+  document.getElementById("valueBtn").innerHTML="Value "+servoValue+" / 4095";
   document.getElementById("widthBtn").innerHTML="Pulse Width "+servoWidth+" ms"; }
 
 function freqDef() { servoFreq=50; doRange(); }
@@ -35,7 +35,7 @@ function freqDec1() { servoFreq-=1; doRange(); }
 function freqInc1() { servoFreq+=1; doRange(); }
 function freqDec10() { servoFreq-=10; doRange(); }
 function freqInc10() { servoFreq+=10; doRange(); }
-function valueDef(ms) { servoValue=Math.round(4096/(1000/servoFreq)*ms); doRange(); }
+function valueDef(ms) { servoValue=Math.round(4095/(1000/servoFreq)*ms); doRange(); }
 function valueDec1() { servoValue-=1; doRange(); }
 function valueInc1() { servoValue+=1; doRange(); }
 function valueDec10() { servoValue-=10; doRange(); }
@@ -48,7 +48,7 @@ function doRange() {
   if (servoFreq>500) { servoFreq=500; }
   if (servoValue<0) { servoValue=0; }
   if (servoValue>4095) { servoValue=4095; }
-  servoWidth=Math.round((1000/servoFreq)/4096*servoValue*100)/100;
+  servoWidth=Math.round((1000/servoFreq)/4095*servoValue*100)/100;
   doDisplay();
   sendAJAX('setSERVO,'+servoFreq+','+servoValue); }
 
