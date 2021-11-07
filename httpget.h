@@ -1,7 +1,7 @@
 String httpget(String request) {
   String response="";
 
-  // Aurora SSTC-2 specific pages
+  // servoFox specific pages
 
   if (request.indexOf("/setSERVO")>=0) {
     int a=request.indexOf(",")+1; int b=request.indexOf(",",a)+1;
