@@ -13,3 +13,5 @@ ESP32 based Servo Tester with WebUI
 * SDA GPIO 21
 * SCL GPIO 22
 * address 0x40
+#### Smartphone Screenshot
+![IMAGE ALT TEXT HERE](https://www.dorstel.de/github/servoFox_v1.0.png)
