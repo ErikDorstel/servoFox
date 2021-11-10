@@ -23,7 +23,7 @@ div  { background-color:#888888; color:#ffffff; border:0px; padding:0px; margin:
 
 function SERVOinit() {
   servoFreq=50; servoValue=307; servoWidth=1.5; servoChan1=16; servoChan2=16;
-  doRange(true); doDisplay(); }
+  doRange(true); }
 
 function doDisplay() {
   document.getElementById("freqBtn").innerHTML="Frequency "+servoFreq+" Hz ["+Math.round(1000/servoFreq*100)/100+" ms]";
