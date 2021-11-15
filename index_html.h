@@ -22,10 +22,11 @@ div  { background-color:#888888; color:#ffffff; border:0px; padding:0px; margin:
 <script>
 
 function SERVOinit() {
-  servoFreq=50; servoValue=307; servoWidth=1.5; servoChan1=16; servoChan2=16;
+  servoFreq=50; servoValue=307; servoWidth=1.5; servoAddr=64; servoChan1=16; servoChan2=16;
   doRange(true); }
 
 function doDisplay() {
+  document.getElementById("addrBtn").innerHTML="I2C Address 0x"+servoAddr.toString(16);
   document.getElementById("freqBtn").innerHTML="Frequency "+servoFreq+" Hz ["+Math.round(1000/servoFreq*100)/100+" ms]";
   document.getElementById("valueBtn").innerHTML="Value "+servoValue+" / 4095";
   document.getElementById("widthBtn").innerHTML="Pulse Width "+servoWidth+" ms";
@@ -34,6 +35,9 @@ function doDisplay() {
   if (servoChan2==16) { document.getElementById("chanBtn2").innerHTML="0-15"; }
   else { document.getElementById("chanBtn2").innerHTML=servoChan2; } }
 
+function addrDef() { servoAddr=64; doRange(false); }
+function addrDec() { servoAddr-=1; doRange(false); }
+function addrInc() { servoAddr+=1; doRange(false); }
 function freqDef() { servoFreq=50; doRange(true); }
 function freqDec1() { servoFreq-=1; doRange(true); }
 function freqInc1() { servoFreq+=1; doRange(true); }
@@ -53,6 +57,8 @@ function chanInc() { servoChan2+=1; doRange(false); }
 function chanSet() { servoChan1=servoChan2; doRange(true); }
 
 function doRange(doSet) {
+  if (servoAddr<64) { servoAddr=65; }
+  if (servoAddr>65) { servoAddr=64; }
   if (servoFreq<40) { servoFreq=40; }
   if (servoFreq>500) { servoFreq=500; }
   if (servoValue<0) { servoValue=0; }
@@ -62,7 +68,7 @@ function doRange(doSet) {
   if (servoChan2>16) { servoChan2=0; }
   servoWidth=Math.round((1000/servoFreq)/4095*servoValue*100)/100;
   doDisplay();
-  if (doSet==true) { sendAJAX('setSERVO,'+servoChan1+','+servoFreq+','+servoValue); } }
+  if (doSet==true) { sendAJAX('setSERVO,'+servoAddr+','+servoChan1+','+servoFreq+','+servoValue); } }
 
 function sendAJAX(value) {
   ajaxObj=new XMLHttpRequest; ajaxObj.open("GET",value,true); ajaxObj.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); ajaxObj.send(); }
@@ -76,10 +82,13 @@ function sendAJAX(value) {
 
 <div>
 <div><div class="x0">Set Servo Parameters</div></div>
+<div><div class="x3" id="addrBtn" onclick="addrDef();"></div>
+     <div class="x3" onclick="addrDec();">&#8722; 1</div>
+     <div class="x3" onclick="addrInc();">+ 1</div></div>
 <div><div class="x1" id="freqBtn" onclick="freqDef();"></div></div>
 <div><div class="x4" onclick="freqDec10();">&#8722; 10</div>
      <div class="x4" onclick="freqDec1();">&#8722; 1</div>
-     <div class="x4" onclick="freqInc1();">+ 1</div>     
+     <div class="x4" onclick="freqInc1();">+ 1</div>
      <div class="x4" onclick="freqInc10();">+ 10</div></div>
 <div><div class="x1" id="valueBtn" onclick="valueDef(1.5);"></div></div>
 <div><div class="x4" onclick="valueDec100();">&#8722; 100</div>

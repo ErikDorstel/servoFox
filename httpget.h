@@ -4,8 +4,8 @@ String httpget(String request) {
   // servoFox specific pages
 
   if (request.indexOf("/setSERVO")>=0) {
-    int a=request.indexOf(",")+1; int b=request.indexOf(",",a)+1; int c=request.indexOf(",",b)+1;
-    setServo(request.substring(a,b-1).toInt(),request.substring(b,c-1).toInt(),request.substring(c).toInt()); }
+    int a=request.indexOf(",")+1; int b=request.indexOf(",",a)+1; int c=request.indexOf(",",b)+1; int d=request.indexOf(",",c)+1;
+    setServo(request.substring(a,b-1).toInt(),request.substring(b,c-1).toInt(),request.substring(c,d-1).toInt(),request.substring(d).toInt()); }
 
   // WLAN Choose specific pages
 
