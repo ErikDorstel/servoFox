@@ -22,22 +22,17 @@ div  { background-color:#888888; color:#ffffff; border:0px; padding:0px; margin:
 <script>
 
 function SERVOinit() {
-  servoFreq=50; servoValue=307; servoWidth=1.5; servoAddr=64; servoChan1=16; servoChan2=16;
-  doRange(true); }
+  servoFreq=50; servoValue=307; servoWidth=1.5; servoAddr=64; servoChan=16;
+  doRange(false); }
 
 function doDisplay() {
-  document.getElementById("addrBtn").innerHTML="I2C Address 0x"+servoAddr.toString(16);
   document.getElementById("freqBtn").innerHTML="Frequency "+servoFreq+" Hz ["+Math.round(1000/servoFreq*100)/100+" ms]";
   document.getElementById("valueBtn").innerHTML="Value "+servoValue+" / 4095";
   document.getElementById("widthBtn").innerHTML="Pulse Width "+servoWidth+" ms";
-  if (servoChan1==16) { document.getElementById("chanBtn1").innerHTML="Channel 0-15"; }
-  else { document.getElementById("chanBtn1").innerHTML="Channel "+servoChan1; }
-  if (servoChan2==16) { document.getElementById("chanBtn2").innerHTML="0-15"; }
-  else { document.getElementById("chanBtn2").innerHTML=servoChan2; } }
+  document.getElementById("addrBtn").innerHTML="I2C Address 0x"+servoAddr.toString(16);
+  if (servoChan==16) { document.getElementById("chanBtn").innerHTML="Channel 0-15"; }
+  else { document.getElementById("chanBtn").innerHTML="Channel "+servoChan; } }
 
-function addrDef() { servoAddr=64; doRange(false); }
-function addrDec() { servoAddr-=1; doRange(false); }
-function addrInc() { servoAddr+=1; doRange(false); }
 function freqDef() { servoFreq=50; doRange(true); }
 function freqDec1() { servoFreq-=1; doRange(true); }
 function freqInc1() { servoFreq+=1; doRange(true); }
@@ -50,25 +45,26 @@ function valueDec10() { servoValue-=10; doRange(true); }
 function valueInc10() { servoValue+=10; doRange(true); }
 function valueDec100() { servoValue-=100; doRange(true); }
 function valueInc100() { servoValue+=100; doRange(true); }
-function chanDef1() { servoChan1=16; doRange(true); }
-function chanDef2() { servoChan2=16; doRange(false); }
-function chanDec() { servoChan2-=1; doRange(false); }
-function chanInc() { servoChan2+=1; doRange(false); }
-function chanSet() { servoChan1=servoChan2; doRange(true); }
+function addrDef() { servoAddr=64; doRange(false); }
+function addrDec() { servoAddr-=1; doRange(false); }
+function addrInc() { servoAddr+=1; doRange(false); }
+function chanDef() { servoChan=16; doRange(false); }
+function chanDec() { servoChan-=1; doRange(false); }
+function chanInc() { servoChan+=1; doRange(false); }
 
 function doRange(doSet) {
-  if (servoAddr<64) { servoAddr=65; }
-  if (servoAddr>65) { servoAddr=64; }
   if (servoFreq<40) { servoFreq=40; }
   if (servoFreq>500) { servoFreq=500; }
   if (servoValue<0) { servoValue=0; }
   if (servoValue>4095) { servoValue=4095; }
   if (servoValue>4095) { servoValue=4095; }
-  if (servoChan2<0) { servoChan2=16; }
-  if (servoChan2>16) { servoChan2=0; }
+  if (servoAddr<64) { servoAddr=65; }
+  if (servoAddr>65) { servoAddr=64; }
+  if (servoChan<0) { servoChan=16; }
+  if (servoChan>16) { servoChan=0; }
   servoWidth=Math.round((1000/servoFreq)/4095*servoValue*100)/100;
   doDisplay();
-  if (doSet==true) { sendAJAX('setSERVO,'+servoAddr+','+servoChan1+','+servoFreq+','+servoValue); } }
+  if (doSet==true) { sendAJAX('setSERVO,'+servoAddr+','+servoChan+','+servoFreq+','+servoValue); } }
 
 function sendAJAX(value) {
   ajaxObj=new XMLHttpRequest; ajaxObj.open("GET",value,true); ajaxObj.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); ajaxObj.send(); }
@@ -106,11 +102,10 @@ function sendAJAX(value) {
 <div><div class="x1" id="addrBtn" onclick="addrDef();"></div></div>
 <div><div class="x2" onclick="addrDec();">&#8722; 1</div>
      <div class="x2" onclick="addrInc();">+ 1</div></div>
-<div><div class="x1" id="chanBtn1" onclick="chanDef1();"></div></div>
-<div><div class="x4" id="chanBtn2" onclick="chanDef2();"></div>
-     <div class="x4" onclick="chanDec();">&#8722;</div>
-     <div class="x4" onclick="chanInc();">+</div>
-     <div class="x4" onclick="chanSet();">Set</div></div>
+<div><div class="x1" id="chanBtn" onclick="chanDef();"></div></div>
+<div><div class="x3" onclick="chanDef();">0-15</div>
+     <div class="x3" onclick="chanDec();">&#8722;</div>
+     <div class="x3" onclick="chanInc();">+</div></div>
 </div>
 
 </body></html>
