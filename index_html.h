@@ -81,10 +81,6 @@ function sendAJAX(value) {
 <div class="x1" onclick="location.replace('/chooseAP');">Choose WLAN AP</div></div>
 
 <div>
-<div><div class="x0">Set Servo Parameters</div></div>
-<div><div class="x3" id="addrBtn" onclick="addrDef();"></div>
-     <div class="x3" onclick="addrDec();">&#8722; 1</div>
-     <div class="x3" onclick="addrInc();">+ 1</div></div>
 <div><div class="x1" id="freqBtn" onclick="freqDef();"></div></div>
 <div><div class="x4" onclick="freqDec10();">&#8722; 10</div>
      <div class="x4" onclick="freqDec1();">&#8722; 1</div>
@@ -107,6 +103,9 @@ function sendAJAX(value) {
      <div class="x4" onclick="valueDef(1.25);">1.25</div>
      <div class="x4" onclick="valueDef(1.75);">1.75</div>
      <div class="x4" onclick="valueDef(2.5);">2.5</div></div>
+<div><div class="x1" id="addrBtn" onclick="addrDef();"></div></div>
+<div><div class="x2" onclick="addrDec();">&#8722; 1</div>
+     <div class="x2" onclick="addrInc();">+ 1</div></div>
 <div><div class="x1" id="chanBtn1" onclick="chanDef1();"></div></div>
 <div><div class="x4" id="chanBtn2" onclick="chanDef2();"></div>
      <div class="x4" onclick="chanDec();">&#8722;</div>
