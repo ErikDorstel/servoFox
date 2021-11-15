@@ -58,8 +58,8 @@ function doRange(doSet) {
   if (servoValue<0) { servoValue=0; }
   if (servoValue>4095) { servoValue=4095; }
   if (servoValue>4095) { servoValue=4095; }
-  if (servoAddr<64) { servoAddr=65; }
-  if (servoAddr>65) { servoAddr=64; }
+  if (servoAddr<64) { servoAddr=64; }
+  if (servoAddr>65) { servoAddr=65; }
   if (servoChan<0) { servoChan=16; }
   if (servoChan>16) { servoChan=0; }
   servoWidth=Math.round((1000/servoFreq)/4095*servoValue*100)/100;
@@ -100,8 +100,8 @@ function sendAJAX(value) {
      <div class="x4" onclick="valueDef(1.75);">1.75</div>
      <div class="x4" onclick="valueDef(2.5);">2.5</div></div>
 <div><div class="x1" id="addrBtn" onclick="addrDef();"></div></div>
-<div><div class="x2" onclick="addrDec();">&#8722; 1</div>
-     <div class="x2" onclick="addrInc();">+ 1</div></div>
+<div><div class="x2" onclick="addrDec();">&#8722;</div>
+     <div class="x2" onclick="addrInc();">+</div></div>
 <div><div class="x1" id="chanBtn" onclick="chanDef();"></div></div>
 <div><div class="x3" onclick="chanDef();">0-15</div>
      <div class="x3" onclick="chanDec();">&#8722;</div>
