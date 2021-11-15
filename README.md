@@ -1,7 +1,7 @@
 # servoFox
 ESP32 based Servo Tester with WebUI
 #### Features
-* uses PCA9685 as PWM controller with standard I2C pins and address
+* uses PCA9685 as PWM controller with standard I2C pins and addresses 0x40;0x41
 * works as WLAN client and AP (AP chooser included)
 * WebUI with IP address 192.168.4.1
 * controls all 16 PWM channels of PCA9685
@@ -15,4 +15,4 @@ ESP32 based Servo Tester with WebUI
 * SCL GPIO 22
 * address 0x40
 #### Smartphone Screenshot
-![IMAGE ALT TEXT HERE](https://www.dorstel.de/github/servoFox_v1.2.png)
+![IMAGE ALT TEXT HERE](https://www.dorstel.de/github/servoFox_v1.3.png)
