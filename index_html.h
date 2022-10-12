@@ -2,10 +2,10 @@ const char *index_html=R"(
 
 <!DOCTYPE html>
 <html lang="en"><head>
-<title>servoVox - ESP32 Servo Tester</title>
+<title>servoFox - ESP32 Servo Tester</title>
 <meta name="author" content="Erik Dorstel">
 <meta name="generator" content="vi">
-<meta name="repository" content="https://github.com/ErikDorstel/servoVox">
+<meta name="repository" content="https://github.com/ErikDorstel/servoFox">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <style>
@@ -24,6 +24,7 @@ select { background-color:#f0f0f0; color:#000000; font-size:1.0em; border:0px; p
 <script>
 
 function SERVOinit() {
+  appName="&nbsp;"; appDesc="&nbsp;"; ajaxObj=[]; requestAJAX('appName');
   servoFreq=50; servoValue=307; servoWidth=1.5; servoAddr=64; servoChan=16;
   doRange(false); }
 
@@ -66,15 +67,25 @@ function doRange(doSet) {
   if (servoChan>16) { servoChan=0; }
   servoWidth=Math.round((1000/servoFreq)/4095*servoValue*100)/100;
   doDisplay();
-  if (doSet==true) { sendAJAX('setSERVO,'+servoAddr+','+servoChan+','+servoFreq+','+servoValue); } }
+  if (doSet==true) { requestAJAX('setSERVO,'+servoAddr+','+servoChan+','+servoFreq+','+servoValue); } }
 
-function sendAJAX(value) {
-  ajaxObj=new XMLHttpRequest; ajaxObj.open("GET",value,true); ajaxObj.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); ajaxObj.send(); }
+function requestAJAX(value) {
+  ajaxObj[value]=new XMLHttpRequest; ajaxObj[value].url=value; ajaxObj[value].open("GET",value,true);
+  ajaxObj[value].setRequestHeader("Content-Type","application/x-www-form-urlencoded"); ajaxObj[value].addEventListener('load',replyAJAX); ajaxObj[value].send(); }
+
+function replyAJAX(event) {
+  if (event.target.status==200) {
+    if (event.target.url.startsWith("connectAP")) { }
+    else if (event.target.url=="appName") {
+      id("appName").innerHTML=event.target.responseText.split(",")[0];
+      id("appDesc").innerHTML=event.target.responseText.split(",")[1]; } } }
+
+function id(id) { return document.getElementById(id); }
 
 </script></head><body onload="SERVOinit();">
 
-<div><div class="x0a">servoFox</div></div>
-<div><div class="x0b">PCA9685 Servo Tester</div></div>
+<div><div class="x0a" id="appName">&nbsp;</div></div>
+<div><div class="x0b" id="appDesc">&nbsp;</div></div>
 
 <div class="x1a" onclick="location.replace('/chooseAP');">Choose WLAN AP</div></div>
 

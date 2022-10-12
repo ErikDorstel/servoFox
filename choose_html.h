@@ -2,10 +2,10 @@ const char *choose_html=R"(
 
 <!DOCTYPE html>
 <html lang="en"><head>
-<title>servoVox - ESP32 Servo Tester</title>
+<title>servoFox - ESP32 Servo Tester</title>
 <meta name="author" content="Erik Dorstel">
 <meta name="generator" content="vi">
-<meta name="repository" content="https://github.com/ErikDorstel/servoVox">
+<meta name="repository" content="https://github.com/ErikDorstel/servoFox">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <style>

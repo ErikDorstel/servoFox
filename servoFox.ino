@@ -1,6 +1,6 @@
 boolean debug=true;
 
-const char* appName="servoVox";
+const char* appName="servoFox";
 const char* appDesc="ESP32 Servo Tester";
 
 #include "PCA9685.h"
