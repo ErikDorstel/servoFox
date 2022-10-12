@@ -1,4 +1,4 @@
-char *index_html=R"(
+const char *index_html=R"(
 
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -9,15 +9,17 @@ char *index_html=R"(
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <style>
-html { font-family:Arial; }
-div  { background-color:#888888; color:#ffffff; border:0px; padding:0px; margin:0px; text-align:center; width:100%; user-select:none; display:inline-block; }
-.x0a { background-color:#C0A0A0; padding:0.2em 0em 0.1em; width:100%; font-size:1.5em; }
-.x0b { background-color:#C0A0A0; padding:0.1em 0em 0.2em; width:100%; font-size:1.2em; }
-.x0  { background-color:#C0A0A0; padding:0.3em 0em; width:100%; font-size:1.4em; }
-.x1  { background-color:#A0B0C0; padding:0.3em 0em; width:100%; font-size:1.4em; }
-.x2  { background-color:#888888; padding:0.3em 0em; width:48%; font-size:1.4em; }
-.x3  { background-color:#888888; padding:0.3em 0em; width:32%; font-size:1.4em; }
-.x4  { background-color:#888888; padding:0.3em 0em; width:24%; font-size:1.4em; }
+html   { font-family:Arial; }
+div    { background-color:#e0e0e0; color:#000000; border:0px; padding:0px; margin:0px; text-align:center; width:100%; user-select:none; display:inline-block; }
+select { background-color:#f0f0f0; color:#000000; font-size:1.0em; border:0px; padding:0px; margin:0px; }
+.x0a   { background-color:#c2d5ed; padding:0.2em 0em 0.1em; width:100%; font-size:1.5em; }
+.x0b   { background-color:#c2d5ed; padding:0.1em 0em 0.2em; width:100%; font-size:1.2em; }
+.x0    { background-color:#c2d5ed; padding:0.3em 0em; width:100%; font-size:1.4em; }
+.x1    { background-color:#f0f0f0; padding:0.3em 0em; width:100%; font-size:1.4em; }
+.x1a   { background-color:#e0e0e0; padding:0.3em 0em; width:100%; font-size:1.4em; }
+.x2    { background-color:#e0e0e0; padding:0.3em 0em; width:48%; font-size:1.4em; }
+.x3    { background-color:#e0e0e0; padding:0.3em 0em; width:32%; font-size:1.4em; }
+.x4    { background-color:#e0e0e0; padding:0.3em 0em; width:24%; font-size:1.4em; }
 </style>
 <script>
 
@@ -74,7 +76,7 @@ function sendAJAX(value) {
 <div><div class="x0a">servoFox</div></div>
 <div><div class="x0b">PCA9685 Servo Tester</div></div>
 
-<div class="x1" onclick="location.replace('/chooseAP');">Choose WLAN AP</div></div>
+<div class="x1a" onclick="location.replace('/chooseAP');">Choose WLAN AP</div></div>
 
 <div>
 <div><div class="x1" id="freqBtn" onclick="freqDef();"></div></div>

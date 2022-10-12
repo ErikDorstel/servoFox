@@ -1,4 +1,7 @@
-boolean debug=false;
+boolean debug=true;
+
+const char* appName="servoVox";
+const char* appDesc="ESP32 Servo Tester";
 
 #include "PCA9685.h"
 #include "WLAN.h"
@@ -8,6 +11,8 @@ boolean debug=false;
 void setup() {
   if (debug) { Serial.begin(115200); }
   initWLAN();
+  initDNS();
+  initHTTP();
   initPCA9685(); }
 
-void loop() { httpWorker(); dnsWorker(); }
+void loop() { wlanWorker(); httpWorker(); dnsWorker(); }
